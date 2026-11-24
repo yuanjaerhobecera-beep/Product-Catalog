@@ -1,47 +1,28 @@
-# Laboratory Exercise 3: React Props and Component Communication
 
-**Subject:** DCIT26 - Application Development and Emerging Technologies
+## Laboratory Exercise 4: React useState and useEffect
 
-**Project:** CvSU Mini Store
+### Guide Questions
 
-## Project Description
-A simple product catalog built using React. It demonstrates props, reusable components, callback functions, and conditional rendering.
+1. **Why do we use two separate states, searchText and debouncedSearch, instead of only one?**
+   searchText updates immediately while typing. debouncedSearch updates after 300 milliseconds, preventing filtering on every keystroke.
 
-## Features
-- Displays 8 products.
-- Shows product prices in Philippine pesos.
-- Displays In Stock and Out of Stock labels.
-- Disables buttons for unavailable products.
-- Includes New and Sale badges.
-- Has an Add to Cart function and running cart count.
-- Uses responsive CSS design.
+2. **What would happen if the debounce effect did not return a cleanup function?**
+   Old timers would continue running, which could cause unnecessary updates and filtering.
 
-## Technologies Used
+3. **What is the purpose of the dependency array? What happens if it is empty ([])? What happens if it is left out completely?**
+   The dependency array controls when useEffect runs. An empty array runs the effect only after the initial render. Without it, the effect runs after every render.
+
+4. **Why should we avoid sorting the original products array directly?**
+   Sorting the original array changes the existing data. We use a copy to keep the original array unchanged.
+
+5. **Is the filtered product list better stored in its own state, or calculated from existing state during rendering? Explain your choice.**
+   It is better to calculate it during rendering because it is based on existing states. This avoids unnecessary state updates and keeps the data consistent.
+
+### Technologies Used
+
 - React
 - JavaScript
 - CSS
 - Vite
-
-## How to Run
-1. Open the project in VS Code.
-2. Open the terminal.
-3. Run `npm install`.
-4. Run `npm run dev`.
-5. Open the localhost link.
-
-## Guide Questions
-
-**1. What is the difference between props and state?**
-Props are passed from parent to child, while state stores data that can change inside a component.
-
-**2. Why can a child component not modify the props it receives?**
-Because props are read-only and controlled by the parent component.
-
-**3. How does the onAddToCart callback allow data to flow from child to parent?**
-The parent passes a function to the child, and the child calls it to send the product title back.
-
-**4. Why is the key prop required when rendering a list with .map()?**
-It helps React identify each item using a unique key and update lists correctly.
-
-**5. What does the children prop allow you to do?**
-It allows us to place content inside a component, such as New and Sale badges.
+- useState
+- useEffect
